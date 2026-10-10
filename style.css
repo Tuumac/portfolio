@@ -491,6 +491,19 @@ a:hover { text-decoration: underline; }
 }
 .contours.is-ready { opacity: 1; }
 @media (min-width: 1180px) { .contours { display: block; } }
+
+/* Phones: contour lines behind the whole page, quieter than on desktop */
+@media (max-width: 768px) {
+  .contours {
+    display: block;
+    left: 0;
+    width: 100%;
+    height: 100vh;   /* large viewport height, so the phone's address bar does not resize it */
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+  .contours.is-ready { opacity: 0.6; }
+}
 @media print { .contours { display: none; } }
 
 /* === NOW (inline section, becomes a sticky card on wide screens) === */

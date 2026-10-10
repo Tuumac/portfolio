@@ -27,6 +27,7 @@
     morphSpeed: 0.00005,   // how fast the terrain changes (lattice units per ms)
     driftSpeed: 0.0035,    // slow sideways drift in CSS px per ms
     fps: 30,
+    mobileFps: 20,         // phones: fewer frames to save battery
     minWidth: 120          // below this canvas width, do not draw
   };
 
@@ -172,12 +173,13 @@
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
   var running = false;
   var last = 0;
-  var frameGap = 1000 / CONFIG.fps;
+  var phone = window.matchMedia && window.matchMedia('(max-width: 768px)');
+  function frameGap() { return 1000 / (phone && phone.matches ? CONFIG.mobileFps : CONFIG.fps); }
 
   function frame(ts) {
     if (!running) return;
     requestAnimationFrame(frame);
-    if (ts - last < frameGap) return;
+    if (ts - last < frameGap()) return;
     last = ts;
     render(ts);
     canvas.classList.add('is-ready');
@@ -204,7 +206,11 @@
   var resizeTimer = 0;
   window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(setup, 150);
+    resizeTimer = setTimeout(function () {
+      var rect = canvas.getBoundingClientRect();
+      if (running && Math.round(rect.width) === width && Math.round(rect.height) === height) return;
+      setup();
+    }, 150);
   });
 
   document.addEventListener('visibilitychange', function () {
