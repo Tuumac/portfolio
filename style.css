@@ -30,7 +30,8 @@ a:hover { text-decoration: underline; }
 /* === SIDEBAR === */
 .sidebar {
   width: var(--sidebar-w);
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
   background: #fff;
   border-right: 1px solid var(--border);
   position: fixed;
@@ -107,7 +108,7 @@ a:hover { text-decoration: underline; }
 /* Contact: one quiet tile, same tint as the KPI tiles. */
 .sidebar-contact {
   list-style: none;
-  margin-top: auto;
+  margin-top: 24px;
   padding: 12px 14px;
   background: var(--tile);
   border-radius: 10px;
@@ -471,7 +472,7 @@ a:hover { text-decoration: underline; }
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   body { flex-direction: column; }
-  .sidebar { position: static; width: 100%; min-height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+  .sidebar { position: static; width: 100%; height: auto; min-height: auto; border-right: none; border-bottom: 1px solid var(--border); }
   .sidebar-cover { height: 80px; margin: 12px 12px 0; }
   .sidebar-inner {
     display: grid;
