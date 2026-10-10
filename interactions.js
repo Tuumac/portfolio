@@ -2,6 +2,7 @@
   var revealEls = document.querySelectorAll('.reveal');
   var statEls = document.querySelectorAll('[data-target]');
   var industryEls = document.querySelectorAll('.industry[data-start]');
+  var cardEls = document.querySelectorAll('.industry[data-start], .now, .job, .blog-item');
   var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function parseMonth(value) {
@@ -95,14 +96,14 @@
         entry.target.classList.toggle('is-active', entry.isIntersecting);
       });
     }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
-    industryEls.forEach(function (el) { activeObserver.observe(el); });
+    cardEls.forEach(function (el) { activeObserver.observe(el); });
   }
 
   function disableCardHighlight() {
     if (!activeObserver) return;
     activeObserver.disconnect();
     activeObserver = null;
-    industryEls.forEach(function (el) { el.classList.remove('is-active'); });
+    cardEls.forEach(function (el) { el.classList.remove('is-active'); });
   }
 
   function syncCardHighlight() {
