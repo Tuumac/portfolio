@@ -294,7 +294,9 @@ a:hover { text-decoration: underline; }
   border-radius: 12px;
   transition: border-color 0.15s;
 }
-.industry:hover { border-color: #c9dce9; }
+@media (hover: hover) {
+  .industry:hover { border-color: #c9dce9; }
+}
 
 .industry__years {
   grid-area: years;
@@ -333,7 +335,9 @@ a:hover { text-decoration: underline; }
   opacity: 0.8;
   transition: filter 0.2s, opacity 0.2s;
 }
-.industry:hover .industry__logo { filter: none; opacity: 1; }
+@media (hover: hover) {
+  .industry:hover .industry__logo { filter: none; opacity: 1; }
+}
 
 .industry__logo-group {
   grid-area: logo;
@@ -440,4 +444,31 @@ a:hover { text-decoration: underline; }
   .industry__dates { display: block; }
   .industry__dates::before { content: none; }
   .kpi { flex: 1 1 88px; }
+}
+
+/* === MOBILE ONLY: highlight the industry card that is crossing the middle of the screen === */
+@media (max-width: 768px) {
+  .industry {
+    transition:
+      border-color 0.4s ease,
+      background-color 0.4s ease,
+      box-shadow 0.4s ease,
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+  .industry__logo {
+    transition: filter 0.4s ease, opacity 0.4s ease;
+  }
+  .industry.is-active {
+    border-color: #b9d4e6;
+    background-color: #f8fbfd;
+    box-shadow: 0 6px 20px rgba(57, 126, 168, 0.10);
+  }
+  .industry.is-active .industry__logo {
+    filter: none;
+    opacity: 1;
+  }
+}
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .industry, .industry__logo { transition: none; }
 }

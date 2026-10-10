@@ -74,4 +74,33 @@
   setYearsAndBars();
   revealEls.forEach(function (el) { observer.observe(el); });
   statEls.forEach(function (el) { observer.observe(el); });
+
+  // Mobile only: highlight the industry card that is crossing the middle of the screen
+  var mobileQuery = window.matchMedia('(max-width: 768px)');
+  var activeObserver = null;
+
+  function enableCardHighlight() {
+    if (activeObserver || !('IntersectionObserver' in window)) return;
+    activeObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.classList.toggle('is-active', entry.isIntersecting);
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    industryEls.forEach(function (el) { activeObserver.observe(el); });
+  }
+
+  function disableCardHighlight() {
+    if (!activeObserver) return;
+    activeObserver.disconnect();
+    activeObserver = null;
+    industryEls.forEach(function (el) { el.classList.remove('is-active'); });
+  }
+
+  function syncCardHighlight() {
+    if (mobileQuery.matches) enableCardHighlight(); else disableCardHighlight();
+  }
+
+  syncCardHighlight();
+  if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', syncCardHighlight);
+  else if (mobileQuery.addListener) mobileQuery.addListener(syncCardHighlight);
 })();
