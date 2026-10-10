@@ -72,6 +72,15 @@
   }, { threshold: 0.15 });
 
   setYearsAndBars();
+
+  // Now card date: always show the current month
+  var nowDate = document.querySelector('.now__date');
+  if (nowDate) {
+    var today = new Date();
+    nowDate.textContent = today.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    nowDate.setAttribute('datetime', today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0'));
+  }
+
   revealEls.forEach(function (el) { observer.observe(el); });
   statEls.forEach(function (el) { observer.observe(el); });
 

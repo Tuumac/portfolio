@@ -17,6 +17,9 @@
 </head>
 <body>
 
+  <!-- Decorative contour lines (right side, wide screens only) -->
+  <canvas id="contours" class="contours" aria-hidden="true"></canvas>
+
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-cover"></div>
@@ -165,19 +168,18 @@
       </div>
     </section>
 
-    <!-- NOW -->
-    <div class="section reveal">
-      <div class="section-title">Now</div>
-      <div class="job">
-        <div class="job-date">Sep 2026</div>
-        <div class="job-content">
-          <ul class="job-bullets">
-            <li>Leading the RELEX Data Platform R&D team — driving Data Mesh implementation across a world-leading retail SaaS platform with 40+ data products.</li>
-            <li>Building <a href="projects.html">Analytics Hub</a> as a side project — a Finnish business and demographic analytics SaaS using React, FastAPI, and PostgreSQL.</li>
-          </ul>
-        </div>
+    <!-- NOW (inline section on small screens, sticky card on wide screens) -->
+    <section class="section now reveal" aria-labelledby="now-title">
+      <div class="now__head">
+        <h2 class="now__title" id="now-title"><span class="now__dot" aria-hidden="true"></span>Now</h2>
+        <time class="now__date" datetime="2026-10">Oct 2026</time>
       </div>
-    </div>
+      <ul class="job-bullets now__list">
+        <li>Leading the RELEX Data Platform R&amp;D team. Data Mesh, 40+ data products.</li>
+        <li>Building <a href="projects.html">Analytics Hub</a> on the side. React, FastAPI, PostgreSQL.</li>
+        <li>Off hours: mountain biking and photography.</li>
+      </ul>
+    </section>
 
     <!-- EXPERIENCE -->
     <div class="section reveal">
@@ -286,5 +288,6 @@
 
   </main>
   <script src="interactions.js"></script>
+  <script src="contours.js" defer></script>
 </body>
 </html>
