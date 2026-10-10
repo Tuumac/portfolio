@@ -273,12 +273,6 @@ a:hover { text-decoration: underline; }
 }
 
 /* === STATS ROW === */
-.stats-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 48px;
-}
 .stat-box {
   flex: 1;
   min-width: 130px;
@@ -297,31 +291,59 @@ a:hover { text-decoration: underline; }
   color: var(--muted);
   margin-top: 2px;
 }
-.stat-breakdown {
+/* === INDUSTRY / STATS === */
+.industries { display: flex; flex-direction: column; gap: 14px; margin-bottom: 48px; }
+
+.industry-row {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+}
+
+.industry-card {
+  flex: 0 0 180px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 16px 18px;
 }
-.stat-breakdown-row {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  line-height: 1.35;
+.industry-emoji { font-size: 20px; line-height: 1; margin-bottom: 6px; }
+.industry-years { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+.industry-name  { font-size: 12px; font-weight: 500; color: var(--text); margin-top: 2px; }
+
+/* color themes — pastel bg + a darker accent for the years figure (AA contrast) */
+.industry-card--blue      { background: var(--blue-light); }
+.industry-card--blue .industry-years      { color: #2d6a8c; }
+
+.industry-card--amber     { background: #fef3c7; }
+.industry-card--amber .industry-years     { color: #92400e; }
+
+.industry-card--mint      { background: #d1fae5; }
+.industry-card--mint .industry-years      { color: #065f46; }
+
+.industry-card--lavender  { background: #ede9fe; }
+.industry-card--lavender .industry-years  { color: #5b21b6; }
+
+/* KPI cards living beside an industry card */
+.kpi-wrap { flex: 1; display: flex; flex-wrap: wrap; gap: 12px; }
+.kpi-wrap .stat-box { min-width: 120px; }
+
+/* mint-tinted KPI cards, used only by the Retail row */
+.stat-box--mint { background: #d1fae5; }
+.stat-box--mint .stat-number { color: #065f46; }
+
+/* solo rows (no sibling KPI cards): widen + go horizontal so they don't look sparse */
+.industry-row--solo .industry-card {
+  flex: 1 1 auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 22px;
 }
-.stat-breakdown-years {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--blue);
-  min-width: 18px;
-}
-.stat-breakdown-industry {
-  font-size: 12px;
-  color: var(--text);
-}
-.stat-breakdown .stat-label {
-  margin-top: 6px;
-  padding-top: 6px;
-  border-top: 1px solid var(--border);
-}
+.industry-row--solo .industry-emoji { font-size: 26px; margin-bottom: 0; }
+.industry-row--solo .industry-years { font-size: 26px; }
+.industry-row--solo .industry-name  { margin-top: 0; font-size: 13px; }
 
 /* === HOVER: SKILL TAGS === */
 .skill-tag {
@@ -355,4 +377,6 @@ a:hover { text-decoration: underline; }
   .main { margin-left: 0; padding: 32px 20px; }
   .job { flex-direction: column; gap: 4px; }
   .job-date { width: auto; }
+  .industry-row { flex-direction: column; }
+  .industry-card { flex: 1 1 auto; width: 100%; }
 }
