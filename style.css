@@ -280,7 +280,12 @@ a:hover { text-decoration: underline; }
 
 .industry {
   display: grid;
-  grid-template-columns: 72px 1fr;
+  grid-template-columns: 72px 1fr auto;
+  grid-template-areas:
+    "years head  logo"
+    "years roles roles"
+    "years chips chips"
+    "years kpis  kpis";
   column-gap: 24px;
   row-gap: 4px;
   padding: 20px 24px;
@@ -292,8 +297,7 @@ a:hover { text-decoration: underline; }
 .industry:hover { border-color: #c9dce9; }
 
 .industry__years {
-  grid-column: 1;
-  grid-row: 1 / -1;
+  grid-area: years;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -311,16 +315,55 @@ a:hover { text-decoration: underline; }
 }
 .industry__bar span { display: block; height: 100%; background: var(--blue); border-radius: 2px; }
 
-.industry__head { grid-column: 2; }
+.industry__head { grid-area: head; }
 .industry__name { font-size: 16px; font-weight: 600; }
 .industry__company { font-size: 13px; color: var(--muted-2); margin-top: 2px; }
 .industry__company strong { font-weight: 500; color: var(--text); }
 .industry__dates::before { content: "· "; }
 
-.industry__roles { grid-column: 2; font-size: 12.5px; color: var(--muted-2); margin-top: 6px; }
+.industry__logo {
+  grid-area: logo;
+  justify-self: end;
+  align-self: start;
+  height: 24px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  filter: grayscale(1) contrast(1.1);
+  opacity: 0.8;
+  transition: filter 0.2s, opacity 0.2s;
+}
+.industry:hover .industry__logo { filter: none; opacity: 1; }
+
+.industry__logo-group {
+  grid-area: logo;
+  justify-self: end;
+  align-self: start;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.industry__logo-group .industry__logo { justify-self: auto; }
+
+.industry__logo--mono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--blue-light);
+  color: var(--blue-dark);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  filter: none;
+  opacity: 1;
+}
+
+.industry__roles { grid-area: roles; font-size: 12.5px; color: var(--muted-2); margin-top: 6px; }
 
 .industry__chips {
-  grid-column: 2;
+  grid-area: chips;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -336,7 +379,7 @@ a:hover { text-decoration: underline; }
   border-radius: 20px;
 }
 
-.industry__kpis { grid-column: 2; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.industry__kpis { grid-area: kpis; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .kpi {
   display: flex;
   flex-direction: column-reverse;
@@ -380,8 +423,20 @@ a:hover { text-decoration: underline; }
   .main { margin-left: 0; padding: 32px 20px; }
   .job { flex-direction: column; gap: 4px; }
   .job-date { width: auto; }
-  .industry { grid-template-columns: 64px 1fr; padding: 16px; }
-  .industry__roles, .industry__chips, .industry__kpis { grid-column: 1 / -1; margin-top: 12px; }
+  .industry {
+    grid-template-columns: 64px 1fr;
+    grid-template-areas:
+      "years head"
+      "years logo"
+      "roles roles"
+      "chips chips"
+      "kpis  kpis";
+    padding: 16px;
+  }
+  .industry__roles, .industry__chips, .industry__kpis { margin-top: 12px; }
+  .industry__logo, .industry__logo-group { justify-self: start; margin-top: 8px; }
+  .industry__logo { height: 20px; }
+  .industry__logo-group .industry__logo { height: 20px; }
   .industry__dates { display: block; }
   .industry__dates::before { content: none; }
   .kpi { flex: 1 1 88px; }
