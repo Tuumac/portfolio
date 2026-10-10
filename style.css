@@ -297,6 +297,31 @@ a:hover { text-decoration: underline; }
   color: var(--muted);
   margin-top: 2px;
 }
+.stat-breakdown {
+  display: flex;
+  flex-direction: column;
+}
+.stat-breakdown-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  line-height: 1.35;
+}
+.stat-breakdown-years {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue);
+  min-width: 18px;
+}
+.stat-breakdown-industry {
+  font-size: 12px;
+  color: var(--text);
+}
+.stat-breakdown .stat-label {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
 
 /* === HOVER: SKILL TAGS === */
 .skill-tag {
