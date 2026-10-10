@@ -582,3 +582,42 @@ a:hover { text-decoration: underline; }
   }
   .now .job-bullets li { font-size: 13px; margin-bottom: 8px; }
 }
+
+/* === MOBILE ONLY: text blocks as cards, so the contour lines never run behind text === */
+@media (max-width: 768px) {
+  .now,
+  .job,
+  .blog-item,
+  .skill-grid {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    transition:
+      border-color 0.4s ease,
+      background-color 0.4s ease,
+      box-shadow 0.4s ease,
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+  .now { margin-bottom: 48px; }
+  .job,
+  .blog-item { margin: 0 0 12px; }
+  .job:hover { background: #fff; }
+  .section-title { margin-bottom: 14px; }
+  .now__head { margin-bottom: 12px; }
+  .now.is-active,
+  .job.is-active,
+  .blog-item.is-active {
+    border-color: #b9d4e6;
+    background-color: #f8fbfd;
+    box-shadow: 0 6px 20px rgba(57, 126, 168, 0.10);
+  }
+  .job-bullets li:last-child { margin-bottom: 0; }
+  .blog-item { flex-direction: column; gap: 8px; }
+  .blog-item:first-child { border-top: 1px solid var(--border); }
+  .blog-meta { width: auto; display: flex; gap: 10px; align-items: baseline; }
+}
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .now, .job, .blog-item, .skill-grid { transition: none; }
+}
