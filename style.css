@@ -678,3 +678,31 @@ a:hover { text-decoration: underline; }
 @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
   .now, .job, .blog-item, .skill-grid { transition: none; }
 }
+
+
+/* === PROJECT FEATURE === */
+.project-feature {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin: 0 -12px 28px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.project-feature:hover { background: var(--blue-light); }
+.project-feature__image {
+  display: block;
+  width: 220px;
+  aspect-ratio: 16 / 10;
+  flex: 0 0 auto;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.project-feature__content { flex: 1; min-width: 0; }
+.project-feature__description { font-size: 13.5px; color: #374151; line-height: 1.5; }
+@media (max-width: 768px) {
+  .project-feature { flex-direction: column; }
+  .project-feature__image { width: 100%; max-width: 360px; }
+}
