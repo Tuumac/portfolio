@@ -680,27 +680,15 @@ a:hover { text-decoration: underline; }
 }
 
 
-/* === PROJECT FEATURE CARD === */
-.project-feature {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 0 0 28px;
-  padding: 16px;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  transition: border-color 0.15s;
-}
-.project-feature:hover { border-color: #c9dce9; }
-.project-feature__image {
+/* === GAME PROJECT THUMBNAIL === */
+.project-game__thumbnail {
   display: block;
   width: 100%;
   max-width: 360px;
   aspect-ratio: 16 / 10;
+  margin: 10px 0;
   object-fit: cover;
   border: 1px solid var(--border);
   border-radius: 8px;
 }
-.project-feature__content { min-width: 0; }
-.project-feature__description { font-size: 13.5px; color: #374151; line-height: 1.5; }
+.project-game__description { font-size: 13.5px; color: #374151; line-height: 1.5; }
