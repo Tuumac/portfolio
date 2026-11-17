@@ -683,12 +683,12 @@ a:hover { text-decoration: underline; }
 /* === GAME PROJECT THUMBNAIL === */
 .project-game__thumbnail {
   display: block;
-  width: 100%;
-  max-width: 360px;
+  width: 360px;
+  max-width: 100%;
+  height: auto;
   aspect-ratio: 16 / 10;
   margin: 10px 0;
   object-fit: cover;
   border: 1px solid var(--border);
   border-radius: 8px;
 }
-.project-game__description { font-size: 13.5px; color: #374151; line-height: 1.5; }
